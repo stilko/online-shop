@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <br> <br> <br> <br>
+    <center>
+        <div class="container">
+            <div class="col-md-4 col-md-offset-4">
+
+            {{ form_start(form) }}
+        <h1>Create promotion</h1><hr>
+ {#Discount percent: <input type="number" name="percent"><br>#}
+
+        {#Start date: <input type="date" name="start_date"><br>#}
+        {#End date: <input type="date" name="end_date"><br>#}
+        {#<input type="submit" value="Create">#}
+{{ form_widget(form) }}
+        <input type="submit" value="Create">
+
+
+        {{ form_end(form) }}
+            </div>
+        </div>
+    </center>
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+

@@ -1,0 +1,56 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {% for message in app.session.flashBag.get('success') %}
+<div class="alert alert-success">
+    {{ message }}
+</div>
+{% endfor %}
+    <p style="margin-top: 90px;"></p>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+    <form method="post">
+        <div class="container">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="main-login main-center">
+                    <h1>Login Here</h1><hr>
+
+                    <div class="form-group">
+                        <label for="name" class="cols-sm-2 control-label">Username</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="_username">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="cols-sm-2 control-label">Password</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                <input type="password" class="form-control" name="_password">
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{{ path('register_form_submit') }}" >
+                        <input type="submit" id="button" class="btn btn-primary btn-lg btn-block login-button" value="Login">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+    </form>
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <br><br><br><br>
+<center>
+<h1>Categories list</h1>
+
+    <table width="200" border="2" cellspacing="0" cellpadding="5">
+        <thead>
+        <div class="row">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                {% if is_granted("ROLE_EDITOR") or is_granted("ROLE_ADMIN") %}
+                <th>Actions</th>
+                {% endif %}
+            </tr>
+        </div>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <div class="row">
+            <tr>
+                <td>{{ category.id }}
+                <td>{{ category.name }}</td>
+                {% if is_granted("ROLE_EDITOR") or is_granted("ROLE_ADMIN") %}
+                <td>
+
+
+                    {#<a href="{{ path('category_edit', { 'id': category.id }) }}"></a>#}
+
+                    <a href="{{ path('category_edit', { 'id': category.id }) }}">edit</a>
+                    {#<a href="{{ path('category_delete',{'id':category.id }) }}">delete</a>#}
+
+                </td>
+                {% endif %}
+            </tr>
+            </div>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if is_granted('ROLE_EDITOR') or is_granted("ROLE_ADMIN") %}
+    <ul>
+        <li>
+            <a href="{{ path('category_new') }}">Create a new category</a>
+        </li>
+    </ul>
+    {% endif %}
+</center>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <br> <br> <br> <br>
+    <center>
+    <h1>User profile</h1>
+    <hr>
+        <table border="2" align="center">
+
+    <tr>
+        <th>username:</th>
+        <th>  {{ user.username }}</th>
+    </tr>
+            <tr>
+                <th>email:</th>
+                <th>  {{ user.email }}</th>
+            </tr>
+            <tr>
+                <th>firstname:</th>
+                <th>  {{ user.firstname }}</th>
+            </tr>
+            <tr>
+                <th>lastname:</th>
+                <th>  {{ user.lastname }}</th>
+            </tr>
+            <tr>
+                <th>city:</th>
+                <th>  {{ user.city }}</th>
+            </tr>
+
+        </table>
+    </center>
+{% endblock %}

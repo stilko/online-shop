@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <br><br><br><br><br><br>
+
+    <div class="container">
+    <div class="table">
+        <center>
+        <table width="650" border="2" cellspacing="0" cellpadding="5">
+            <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+
+            <th>Email</th>
+
+            <th>First name</th>
+
+            <th>Last name</th>
+
+            <th>City</th>
+            <th>Ban list</th>
+            <th>Action</th>
+        </tr>
+            </thead>
+            <tbody>
+        {% for user in users %}
+            <tr>
+                <th>{{ user.id }}</th>
+
+                <th>{{ user.username }}</th>
+
+                <th>{{ user.email }}</th>
+
+                <th>{{ user.firstname }}</th>
+
+                <th>{{ user.lastname }}</th>
+
+                <th>{{ user.city }}</th>
+
+                <th>{{ user.isBlock }}</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                <th>
+                        <a href="{{ path('delete_user', {'id': user.id }) }}">
+                            <input type="submit" value="Delete">
+                        </a>
+
+
+                    {% if user.isBlock == 0 %}
+                        <a href="{{ path('ban_user', {'id': user.id }) }}">
+                            <input type="submit" value="Bann">
+                        </a>
+                    </th>
+                        {% else %}
+                                <a href="{{ path('unBan_user', {'id': user.id }) }}">
+                                    <input type="submit" value="Reset user">
+                                </a>
+                            </th>
+
+                    {%  endif %}
+                {%  endif %}
+            </tr>
+        {% endfor %}
+            </tbody>
+    </table>
+        </center>
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block stylesheets %}
+
+
+{% endblock %}
+

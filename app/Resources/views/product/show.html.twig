@@ -1,0 +1,156 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            <div class="single-product-image-inner">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="one">
+                        <img src="/images/project/{{ product.image }}" width="555" height="535" alt="">
+                    </div>
+                </div>
+                <!-- Nav tabs -->
+                {#<ul class="product-tabs" role="tablist">#}
+                    {#<li role="presentation" class="active"><a href="#one" aria-controls="one" role="tab" data-toggle="tab"><img src="/images/project/{{ product.image }}" alt=""></a></li>#}
+                    {#<li role="presentation"><a href="#two" aria-controls="two" role="tab" data-toggle="tab"><img src="images/thumb-2.jpg" alt=""></a></li>#}
+                    {#<li role="presentation"><a href="#three" aria-controls="three" role="tab" data-toggle="tab"><img src="images/thumb-3.jpg" alt=""></a></li>#}
+                {#</ul>#}
+            </div>
+        </div>
+        <div class="clearfix visible-xs"></div>
+        <div class="col-md-offset-1 col-md-5 col-sm-6">
+            <div class="single-product-details">
+                <div class="list-pro-rating">
+                    <i class="fa fa-star icolor"></i>
+                    <i class="fa fa-star icolor"></i>
+                    <i class="fa fa-star icolor"></i>
+                    <i class="fa fa-star icolor"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+                <h2>{{ product.name }}</h2><hr>
+                <i> <h4>in stock</h4></i>
+                <p>{{ product.description }}</p>
+                <div class="single-product-price">
+                    <h2>{{ product.price }} лв.</h2>
+                </div>
+                {#<p class="single-shop-select">#}
+                    {#<label>color</label>#}
+                    {#<select>#}
+                        {#<option>Green</option>#}
+                        {#<option>Black</option>#}
+                        {#<option>Gold</option>#}
+                    {#</select>#}
+                {#</p>#}
+                {#<p class="single-shop-select">#}
+                    {#<label>Size</label>#}
+                    {#<select>#}
+                        {#<option>S</option>#}
+                        {#<option>M</option>#}
+                        {#<option>X</option>#}
+                        {#<option>XL</option>#}
+                        {#<option>2X</option>#}
+                        {#<option>3X</option>#}
+                    {#</select>#}
+                {#</p>#}
+                <div class="product-attributes clearfix">
+                           <span class="pull-left" id="quantity-wanted-p">
+                           {#<span class="dec qtybutton">-</span>#}
+                           <input type="text" value="1" class="cart-plus-minus-box">
+                           {#<span class="inc qtybutton">+</span>#}
+                           </span>
+                    <span>
+                           {#<a class="cart-btn btn-danger" href="{{ path('cart_add', {'id': 'product.id'}) }}">#}
+                           <span><i class="fa fa-cart-plus"></i> Add to Cart</span>
+                           </a>
+                           </span>
+                    {#<span>#}
+                           {#<a class="cart-btn btn-success" href="product-checkout.html">#}
+                           {#<span><i class="fa fa-bolt"></i> Buy Now</span>#}
+                           {#</a>#}
+                           {#</span>#}
+                </div>
+                <div class="add-to-wishlist">
+                    <a class="wish-btn" href="cart.html">
+                        <i class="fa fa-heart-o"></i>
+                        <span>ADD TO WISHLIST</span>
+                    </a>
+                </div>
+                <div class="single-product-categories">
+                    <label>Categories:</label>
+                    <span>{{ product.category }}</span>
+                    {% if is_granted("ROLE_ADMIN") or is_granted("ROLE_EDITOR") %}
+
+                            {{ form_start(delete_form) }}
+                            <input type="submit" value="Delete">
+                            {{ form_end(delete_form) }}
+                    <a href="{{ path('product_edit', {'id': product.id}) }}">Edit</a>
+                    {% endif %}
+                    <br>
+                    <div class="clear"></div>
+                    <label>Services:</label>
+                    <span>Cash On Delivery available?</span>
+                    <div class="clear"></div>
+                    <label>Categories:</label>
+                    <span>30 Days Exchange Policy?</span>
+                    <div class="clear"></div>
+                    <label>Payment Method</label>
+                    <span>Safe and Secure Payments. Easy returns.</span>
+                </div>
+            </div>
+        </div>
+        <ul>
+            <li>
+                <a href="{{ path('homepage') }}">Back to the list</a>
+            </li>
+        </ul>
+    </div>
+
+    {#<h1>Product</h1>#}
+
+    {#<table>#}
+        {#<tbody>#}
+            {#<tr>#}
+                {#<th>Id</th>#}
+                {#<td>{{ product.id }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Name</th>#}
+                {#<td>{{ product.name }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Date</th>#}
+                {#<td>{% if product.date %}{{ product.date|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Price</th>#}
+                {#<td>{{ product.price }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>image</th>#}
+                {#<td><img src="/images/project/{{ product.image }}" width="100" height="100"> </td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Description</th>#}
+                {#<td>{{ product.description }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Brand</th>#}
+                {#<td>{{ product.brand }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Available</th>#}
+                {#<td>{{ product.available }}</td>#}
+            {#</tr>#}
+        {#</tbody>#}
+    {#</table>#}
+
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('product_index') }}">Back to the list</a>#}
+        {#</li>#}
+
+    {#</ul>#}
+{% endblock %}

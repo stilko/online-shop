@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <br><br>
+    <div class="col-md-4 col-md-offset-4">
+
+    <h1>Product creation</h1><hr>
+
+    {{ form_start(form) }}
+
+            {{ form_widget(form) }}
+        <div class="form-group ">
+            <input type="submit" id="button" class="btn btn-primary btn-lg btn-block login-button" value="Create">
+        </div>
+        {#<input type="submit" value="Create" />#}
+    {{ form_end(form) }}
+
+            <a href="{{ path('product_new') }}" >
+            </a>
+        </div>
+
+
+        <ul>
+        <li>
+            <a href="{{ path('homepage') }}">Back to the list</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

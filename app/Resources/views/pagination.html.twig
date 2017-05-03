@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <br>   <br>   <br>   <br>   <br>   <br>   <br>
+
+    sdfsfs
+    <div class="count">
+    </div>
+    <table>
+   {% for product in pagination %}
+       <tr><td>
+    {{ (product.name) }}
+           </td>   </tr>
+   {% endfor %}
+    </table>
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
