@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="col-md-4 col-md-offset-4">
+        <h1>Your Products</h1>
+<center>
+    <table border="2px">
+
+    <tr>
+        <td>Product Name</td>
+        <td>Image</td>
+        <td>Quantity</td>
+    </tr>
+    {% if products is not null %}
+{% for product in products %}
+  <tr>
+      <td>{{ product.productId.name }}</td>
+      <td><img src="/images/project/{{ product.productId.image }}" width="55" height="55" alt=""></td>
+      <td>{{ product.qty }}</td>
+
+  </tr>
+    {% endfor %}
+{% endif %}
+    </table>
+</center>
+    </div>
+{% endblock %}

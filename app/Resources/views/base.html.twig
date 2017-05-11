@@ -12,7 +12,6 @@
 
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-        {#<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">#}
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
@@ -25,19 +24,13 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="{{ path('homepage') }}">Homepage</a>
+                    <a class="navbar-brand" href="{{ path('user_products_list') }}">User Products</a>
+                    <a class="navbar-brand" href="{{ path('user_profile') }}">Profile</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li>
-                            <a href="#">About</a>
-                        </li>
-                        <li>
-                            <a href="#">Services</a>
-                        </li>
-                        <li>
-                            <a href="#">Contact</a>
-                        </li>
+
                             {% if is_granted("ROLE_ADMIN") or is_granted("ROLE_EDITOR") %}
                         <li>
                             <a href="{{ path('product_new') }}">create new product</a>
@@ -54,11 +47,10 @@
                             </li>
                             {% elseif is_granted("ROLE_ADMIN") or is_granted("ROLE_EDITOR") %}
                                 <li>
-                                    <a href="{{ path('user_profile_list', {'id': app.user.id}) }}" style="position:relative;left:400px;">Hello  {{ app.user.firstname }}</a>
+                                    <a href="{{ path('user_profile', {'id': app.user.id}) }}" style="position:relative;left:400px;">Hello  {{ app.user.firstname }}</a>
                                 </li>
                                 <li>
                                     <a href="{{ path('logout') }}" style="position:relative;left:420px;">logout</a>
-                                    {#<a href="{{ path('product_new') }}">new product</a>#}
 
                                 </li>
 
@@ -90,6 +82,7 @@
         <script src="js/bootstrap.min.js"></script>
     </head>
     <body>
+    <br><br><br>
     {% if app.session.flashBag.has('success') %}
         <ul style="color: green">
             {% for message in app.session.flashBag.get('success') %}
@@ -98,7 +91,7 @@
         </ul>
     {% endif %}
     {% if app.session.flashBag.has('error') %}
-        <ul style="color: green">
+        <ul style="color: red">
             {% for message in app.session.flashBag.get('error') %}
                 <h2>      <li>{{ message }}</li></h2>
             {% endfor %}

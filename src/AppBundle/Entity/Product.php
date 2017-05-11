@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\DateTime;
@@ -87,6 +88,35 @@ class Product
     private $category;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CartProduct", mappedBy="product")
+     */
+    private $cartProduct;
+
+    public function __construct()
+    {
+        $this->cartProduct = new ArrayCollection();
+        $this->date = new DateTime();
+
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCartProduct()
+    {
+        return $this->cartProduct;
+    }
+
+    /**
+     * @param mixed $cartProduct
+     */
+    public function setCartProduct($cartProduct)
+    {
+        $this->cartProduct = $cartProduct;
+    }
+
+
+    /**
      * @return mixed
      */
     public function getCategory()
@@ -144,10 +174,9 @@ class Product
      * Product constructor.
      * @param \DateTime $date
      */
-    public function __construct()
-    {
-        $this->date = new DateTime();
-    }
+//    public function __construct()
+//    {
+//    }
 
 
     /**

@@ -59,12 +59,15 @@ class DefaultController extends Controller
 //            ->orderBy('p.price', 'ASC')
             ->getQuery();
         $products = $query->getResult();
+        $calc = $this->get('price_calculator');
+        $max_promotion = $this->getDoctrine()->getRepository('AppBundle:Promotions')->fetchBiggestPromotion();
+
 
         $paginator = $this->get('knp_paginator');
 
         $pagination = $paginator->paginate($query, $request->query->getInt('page',1),6);
         return $this->render(':product:index.html.twig', array(
-            'categories' => $categories,'pagination'=> $pagination,
+            'categories' => $categories,'pagination'=> $pagination,'calc'=> $calc,'promotion'=>$max_promotion
         ));
     }
 }

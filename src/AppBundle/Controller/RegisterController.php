@@ -32,12 +32,6 @@ class RegisterController extends Controller
         $form= $this->createForm(UserType::class,$user);
         $form->handleRequest($request);
 
-//        $validator = $this->get('validator');
-//        $errors = $validator->validate($user);
-//        if (count($errors) > 0) {
-//            return $this->render(':default:proba.html.twig', array(
-//                'errors' => $errors,'form'=>$form->createView()));
-//        }
 
             if($form->isSubmitted()) {
             $encoder = $this->container->get('security.password_encoder');
@@ -50,7 +44,7 @@ class RegisterController extends Controller
                 $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-            return $this->redirectToRoute('product_show');
+            return $this->redirectToRoute('homepage');
 
              }
 

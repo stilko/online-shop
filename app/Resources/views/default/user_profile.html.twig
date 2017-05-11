@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {#{{ form_start(edit_form) }}#}
     <br> <br> <br> <br>
     <center>
-    <h1>User profile</h1>
+    <h1>User Profile</h1>
     <hr>
         <table border="2" align="center">
 
@@ -30,4 +31,6 @@
 
         </table>
     </center>
+    <a href="{{ path('user_profile_edit') }}">Edit</a>
+    {#{{ form_end(edit_form) }}#}
 {% endblock %}

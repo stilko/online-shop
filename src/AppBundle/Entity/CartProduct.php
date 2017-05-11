@@ -22,20 +22,80 @@ class CartProduct
     private $id;
 
     /**
-     * @var \stdClass
+     * @return Cart
+     */
+    public function getCart(): Cart
+    {
+        return $this->cart;
+    }
+
+    /**
+     * @param Cart $cart
+     * @return $this
+     */
+    public function setCart(Cart $cart)
+    {
+        $this->cart = $cart;
+        return $this;
+
+    }
+//    /**
+//     * Get product
+//     *
+//     * @return \stdClass
+//     */
+//    public function getProduct()
+//    {
+//        return $this->product;
+//    }
+//
+//    /**
+//     * Set product
+//     *
+//     * @param \stdClass $product
+//     *
+//     * @return CartProduct
+//     */
+//    public function setProduct($product)
+//    {
+//        $this->product = $product;
+//
+//        return $this;
+//    }
+//
+    /**
+     * @return Product
+     */
+    public function getProduct(): Product
+    {
+        return $this->product;
+    }
+
+    /**
      *
-     * @ORM\ManyToOne(targetEntity="product")
+     * @param Product $product
+     * @return $this
+     */
+    public function setProduct(Product $product)
+    {
+        $this->product = $product;
+        return $this;
+    }
+
+    /**
+     * @var Cart
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Cart")
      * @ORM\JoinColumn(name="cart_id", referencedColumnName="id")
      */
     private $cart;
 
     /**
-     * @var \stdClass
-     *
-     * @ORM\ManyToOne(targetEntity="product")
-     * @ORM\JoinColumn(name= "product_id", referencedColumnName="id")
+     * @var Product
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Product", inversedBy="cartProduct",fetch="EAGER")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */
     private $product;
+
 
     /**
      * @var int
@@ -53,54 +113,6 @@ class CartProduct
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set cart
-     *
-     * @param \stdClass $cart
-     *
-     * @return CartProduct
-     */
-    public function setCart($cart)
-    {
-        $this->cart = $cart;
-
-        return $this;
-    }
-
-    /**
-     * Get cart
-     *
-     * @return \stdClass
-     */
-    public function getCart()
-    {
-        return $this->cart;
-    }
-
-    /**
-     * Set product
-     *
-     * @param \stdClass $product
-     *
-     * @return CartProduct
-     */
-    public function setProduct($product)
-    {
-        $this->product = $product;
-
-        return $this;
-    }
-
-    /**
-     * Get product
-     *
-     * @return \stdClass
-     */
-    public function getProduct()
-    {
-        return $this->product;
     }
 
     /**

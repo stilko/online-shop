@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,22 +21,47 @@ class Cart
      */
     private $id;
 
-//
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $userId;
+
+    /**
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @param  $userId
+     * @return $this
+     */
+    public function setUserId( $userId)
+    {
+
+        $this->userId = $userId;
+
+        return $this;
+    }
+
+
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_on", type="datetime")
+     * @ORM\Column(name="dateCreated", type="datetime")
      */
-    private $createdOn;
+    private $dateCreated;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updated_on", type="datetime")
+     * @ORM\Column(name="dateUpdated", type="datetime")
      */
-    private $updatedOn;
-
-
+    private $dateUpdated;
 
 
     /**
@@ -50,55 +74,52 @@ class Cart
         return $this->id;
     }
 
-
-
-
     /**
-     * Set createdOn
+     * Set dateCreated
      *
-     * @param \DateTime $createdOn
+     * @param \DateTime $dateCreated
      *
      * @return Cart
      */
-    public function setCreatedOn($createdOn)
+    public function setDateCreated($dateCreated)
     {
-        $this->createdOn = $createdOn;
+        $this->dateCreated = $dateCreated;
 
         return $this;
     }
 
     /**
-     * Get createdOn
+     * Get dateCreated
      *
      * @return \DateTime
      */
-    public function getCreatedOn()
+    public function getDateCreated()
     {
-        return $this->createdOn;
+        return $this->dateCreated;
     }
 
     /**
-     * Set updatedOn
+     * Set dateUpdated
      *
-     * @param \DateTime $updatedOn
+     * @param \DateTime $dateUpdated
      *
      * @return Cart
      */
-    public function setUpdatedOn($updatedOn)
+    public function setDateUpdated($dateUpdated)
     {
-        $this->updatedOn = $updatedOn;
+        $this->dateUpdated = $dateUpdated;
 
         return $this;
     }
 
     /**
-     * Get updatedOn
+     * Get dateUpdated
      *
      * @return \DateTime
      */
-    public function getUpdatedOn()
+    public function getDateUpdated()
     {
-        return $this->updatedOn;
+        return $this->dateUpdated;
     }
 }
 

@@ -19,11 +19,11 @@ class PromotionsRepository extends \Doctrine\ORM\EntityRepository
             ->andWhere($qb->expr()->gte('p.endDate', ':today'))
             ->setParameter('today', $today)
             ->orderBy('p.percent' ,'DESC')
-            ->setMaxResults(1)
-            ->getQuery()->getSingleScalarResult();
+            ->setMaxResults(1);
+//            ->getQuery()->getSingleScalarResult();
 
-        if ($result->getOneOrNullResult() !== null) {
-            return $result->getSingleScalarResult();
+        if ($result->getQuery()->getOneOrNullResult() !== null) {
+            return $result->getQuery()->getSingleScalarResult();
         }
         return 0;
     }
